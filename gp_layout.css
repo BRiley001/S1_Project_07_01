@@ -22,23 +22,23 @@
 @import url("gp_designs.css");
 
 /* Flex Layout Styles */
-
+/* the entire page is displayed as a flex box, which means it will flex as the page is shrunken or enlarged, or viewed on a different device, everything is displayed in a row that wraps to the next line if it overflows, it includes progressive enhancement for older browsers */
 body {
     display: -webkit-flex;
     display: flex;
-    -webkit-box-flex: row wrap;
-    flex: row wrap;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
 }
 
+/* the sheet section (with progressive enhancement) will  grow at a rate of three, shrink at one, and has a basis at 301px */
 section#sheet {
     -webkit-flex: 3 1 301px;
     flex: 3 1 301px;
 }
 
+/* the article element will (with progressive enhancement for older browsers) grow at a factor of 1, shrink at a factor of 3, and has a base size at 180px */
 article {
     -webkit-flex: 1 3 180px;
-    display: flex;
-
     flex: 1 3 180px;
 }
 
@@ -47,31 +47,62 @@ article {
 	Mobile Devices: 0 - 480 pixels
    ============================================
 */
+/* Using a media query that detects how large the screen is (in this case a screen that is at most 480px), has the selectors only apply when displayed on a 'mobile' device or a browser that has the window small enough*/
 @media only screen and (max-width: 480px) {
+
+    /* the images that are in the panel class have a full width */
     img.panel {
         width: 100%;
     }
 
+    /* the horizontal navigation is displayed at almost the very end of the page */
     nav.horizontal {
         -webkit-order: 99;
         order: 99;
     }
 
+    /* the footer that is a direct child of the body is displayed at the very end of the page */
     body>footer {
         -webkit-order: 100;
         order: 100;
     }
 }
 
-
-
 /* ===================================================
 	Tablet and Desktop Devices: Greater than 480 pixels
    ===================================================
 */
+/* On devices that qualify as tablets and desktops (anything over 480 pixels) has the style rules only apply then */
 @media only screen and (min-width: 481px) {
+
+    /* any unordered lists that are descended from horizontal navigations are displayed as flex boxes, and will not wrap, while being 40px tall */
     nav.horizontal ul {
         display: -webkit-flex;
         display: flex;
+        -webkit-flex-flow: row nowrap;
+        flex-flow: row nowrap;
+        height: 40px;
+    }
+
+    /* list items within unordered lists that are within horizontal navigations will grow and shrink at the same rate, and has an automaticall determined basis */
+    nav.horizontal ul li {
+        flex: 1 1 auto;
+    }
+
+    /* images with the classes that determine the width have widths so that the panels line up better. */
+    img.size1 {
+        width: 100%;
+    }
+
+    img.size2 {
+        width: 60%;
+    }
+
+    img.size3 {
+        width: 40%;
+    }
+
+    img.size4 {
+        width: 30%;
     }
 }

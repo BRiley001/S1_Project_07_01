@@ -17,11 +17,33 @@
 
 
 /* Hidden Objects */
-
-
-
-
-
-
+/* the navigation, footer, and article all aren't displayed when printed out, so that it looks nicer and prints better */
+nav,
+footer,
+article {
+    display: none;
+}
 
 /* Comic Book Sheet Styles */
+/* the sheet section will have a specific width, and be centered horizontally */
+section#sheet {
+    width: 6in;
+    margin: 0in auto;
+}
+
+/* Each panel of the comci book has a width so that it looks correct when printed out. This is because otherwise the printer would print it out differently than what the web page would look like */
+img.size1 {
+    width: 5in;
+}
+
+img.size2 {
+    width: 3in;
+}
+
+img.size3 {
+    width: 2in;
+}
+
+img.size4 {
+    width: 1.5in;
+}
